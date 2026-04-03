@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: public-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: public-api
+  template:
+    metadata:
+      labels:
+        app: public-api
+    spec:
+      containers:
+        - name: public-api
+          image: public-api:1.0
+          env:
+            - name: UPSTREAM_URL
+              value: "http://upstream-api:8080/ping"
+          ports:
+            - containerPort: 8080

@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: upstream-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: upstream-api
+  template:
+    metadata:
+      labels:
+        app: upstream-api
+    spec:
+      containers:
+        - name: upstream-api
+          image: upstream-api:1.0
+          ports:
+            - containerPort: 8080
